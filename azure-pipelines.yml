@@ -22,3 +22,17 @@ steps:
     goals: 'package'
     options: 'package -Dmaven.javadoc.skip'
 
+- task: Maven@3
+  displayName: 'Deploy'
+  inputs:
+    mavenPomFile: 'langchain4j-elasticsearch/pom.xml'
+    mavenOptions: '-Xmx3072m'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.8'
+    jdkArchitectureOption: 'x64'
+    mavenAuthenticateFeed: true
+    publishJUnitResults: false
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    goals: 'package'
+    options: '-Drevision=0.23.0-MATATIKA-$(build.buildid) jar:jar'
+

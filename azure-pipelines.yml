@@ -16,8 +16,6 @@ steps:
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.8'
     jdkArchitectureOption: 'x64'
-    mavenAuthenticateFeed: true
     publishJUnitResults: false
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    goals: 'deploy'
-    options: 'deploy -Dmaven.javadoc.skip -DaltDeploymentRepository=matatika'
+    goals: 'package'

@@ -34,5 +34,5 @@ steps:
     publishJUnitResults: false
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'deploy'
-    options: 'deploy -e -Dmaven.javadoc.skip -DaltSnapshotDeploymentRepository=matatika::default::https://pkgs.dev.azure.com/matatika/_packaging/matatika/maven/v1'
+    options: 'deploy -e -Dmaven.javadoc.skip -DskipNexusStagingDeployMojo=true -DaltDeploymentRepository=matatika::default::https://pkgs.dev.azure.com/matatika/_packaging/matatika/maven/v1'
 

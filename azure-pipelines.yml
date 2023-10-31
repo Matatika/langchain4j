@@ -10,6 +10,7 @@ steps:
     artifactsFeeds: 'matatika'
 
 - task: Maven@3
+  displayName: 'Package'
   inputs:
     mavenPomFile: 'langchain4j-elasticsearch/pom.xml'
     mavenOptions: '-Xmx3072m'
@@ -20,3 +21,18 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
     options: 'package -Dmaven.javadoc.skip'
+
+- task: Maven@3
+  displayName: 'Deploy'
+  inputs:
+    mavenPomFile: 'langchain4j-elasticsearch/pom.xml'
+    mavenOptions: '-Xmx3072m'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.8'
+    jdkArchitectureOption: 'x64'
+    mavenAuthenticateFeed: true
+    publishJUnitResults: false
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    goals: 'deploy'
+    options: 'deploy -Dmaven.javadoc.skip -DaltDeploymentRepository=matatika'
+

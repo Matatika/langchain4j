@@ -7,7 +7,7 @@ pool:
 steps:
 - task: MavenAuthenticate@0
   inputs:
-    artifactsFeeds: 'matatika'
+    artifactsFeeds: matatika
 
 - task: Maven@3
   displayName: 'Package'

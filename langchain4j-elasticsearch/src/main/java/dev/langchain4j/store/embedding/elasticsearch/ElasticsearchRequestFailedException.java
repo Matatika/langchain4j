@@ -1,6 +1,7 @@
 package dev.langchain4j.store.embedding.elasticsearch;
 
 public class ElasticsearchRequestFailedException extends RuntimeException {
+    private static final long serialVersionUID = 1L;
 
     public ElasticsearchRequestFailedException() {
         super();

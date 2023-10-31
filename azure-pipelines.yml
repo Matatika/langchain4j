@@ -34,5 +34,5 @@ steps:
     publishJUnitResults: false
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
-    options: '-Drevision=0.23.0-MATATIKA-$(build.buildid) jar:jar'
+    options: '-e -Dmaven.javadoc.skip -Drevision=0.23.0-MATATIKA-$(build.buildid) jar:jar'
 

@@ -34,5 +34,5 @@ steps:
     publishJUnitResults: false
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
-    options: '-e -Dmaven.javadoc.skip -Drevision=0.23.0-MATATIKA-$(build.buildid) jar:jar'
+    options: '-e -Dmaven.javadoc.skip -Drevision=0.23.0-MATATIKA-$(build.buildid) jar:jar org.apache.maven.plugins:maven-deploy-plugin:3.1.1:deploy -DaltDeploymentRepository=matatika::https://pkgs.dev.azure.com/matatika/_packaging/matatika/maven/v1'
 

@@ -34,5 +34,5 @@ steps:
     publishJUnitResults: false
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'deploy'
-    options: '-Drevision=0.23.0-MATATIKA jar:jar org.apache.maven.plugins:maven-deploy-plugin:3.1.1:deploy -e -X -Dmaven.javadoc.skip -DaltDeploymentRepository=matatika::default::https://pkgs.dev.azure.com/matatika/_packaging/matatika/maven/v1'
+    options: '-Drevision=0.23.0-MATATIKA-$(build.buildid) jar:jar org.apache.maven.plugins:maven-deploy-plugin:3.1.1:deploy -e -X -Dmaven.javadoc.skip -DaltDeploymentRepository=matatika::https://pkgs.dev.azure.com/matatika/_packaging/matatika/maven/v1'
 

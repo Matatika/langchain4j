@@ -7,9 +7,23 @@ pool:
 steps:
 - task: MavenAuthenticate@0
   inputs:
-    artifactsFeeds: 'matatika'
+    artifactsFeeds: matatika
 
 - task: Maven@3
+  displayName: 'Package'
+  inputs:
+    mavenPomFile: 'langchain4j-elasticsearch/pom.xml'
+    mavenOptions: '-Xmx3072m'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.8'
+    jdkArchitectureOption: 'x64'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    goals: 'package'
+    options: 'package -Dmaven.javadoc.skip'
+
+- task: Maven@3
+  displayName: 'Deploy'
   inputs:
     mavenPomFile: 'langchain4j-elasticsearch/pom.xml'
     mavenOptions: '-Xmx3072m'
@@ -20,3 +34,5 @@ steps:
     publishJUnitResults: false
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'deploy'
+    options: 'deploy -e -Dmaven.javadoc.skip -DskipNexusStagingDeployMojo=true -DaltDeploymentRepository=matatika::default::https://pkgs.dev.azure.com/matatika/_packaging/matatika/maven/v1'
+

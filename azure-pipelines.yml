@@ -1,5 +1,3 @@
-# Springboot app with Docker
-
 trigger:
 - main
 
@@ -10,24 +8,14 @@ pool:
   inputs:
     artifactsFeeds: 'matatika'
 
-- task: JavaToolInstaller@0
+- task: Maven@3
   inputs:
-    versionSpec: '8'
+    mavenPomFile: 'langchain4j-elastic/pom.xml'
+    mavenOptions: '-Xmx3072m'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.8'
     jdkArchitectureOption: 'x64'
-    jdkSourceOption: 'PreInstalled'
-  displayName: 'Install JDK'
-
-- script: |
-    java -version
-  continueOnError: true
-  displayName: 'Debug build dependency versions'
-
-- bash: mvn test
-  continueOnError: true
-  displayName: Test
-
-- task: PublishTestResults@2
-  inputs:
-    testResultsFiles: '**/TEST-*.xml'
-    mergeTestResults: true
-    failTaskOnFailedTests: true
+    mavenAuthenticateFeed: true
+    publishJUnitResults: false
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    goals: 'deploy'

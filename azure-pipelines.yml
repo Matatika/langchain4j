@@ -4,6 +4,7 @@ trigger:
 pool:
   vmImage: 'ubuntu-20.04'
 
+steps:
 - task: MavenAuthenticate@0
   inputs:
     artifactsFeeds: 'matatika'

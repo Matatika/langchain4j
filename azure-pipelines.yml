@@ -1,0 +1,33 @@
+# Springboot app with Docker
+
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-20.04'
+
+- task: MavenAuthenticate@0
+  inputs:
+    artifactsFeeds: 'matatika'
+
+- task: JavaToolInstaller@0
+  inputs:
+    versionSpec: '8'
+    jdkArchitectureOption: 'x64'
+    jdkSourceOption: 'PreInstalled'
+  displayName: 'Install JDK'
+
+- script: |
+    java -version
+  continueOnError: true
+  displayName: 'Debug build dependency versions'
+
+- bash: mvn test
+  continueOnError: true
+  displayName: Test
+
+- task: PublishTestResults@2
+  inputs:
+    testResultsFiles: '**/TEST-*.xml'
+    mergeTestResults: true
+    failTaskOnFailedTests: true

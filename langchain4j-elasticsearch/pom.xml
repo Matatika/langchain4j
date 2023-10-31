@@ -64,6 +64,19 @@
 
     </dependencies>
 
+	<repositories>
+		<repository>
+			<id>matatika</id>
+			<url>https://pkgs.dev.azure.com/matatika/_packaging/matatika/maven/v1</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
     <licenses>
         <license>
             <name>Apache-2.0</name>
